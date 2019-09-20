@@ -1,6 +1,6 @@
 #include "CDirectX.h"
 
-void CDirectX::CreateMainWindow(LPCTSTR Title, float Width, float Height, WNDPROC WndProc, int nShowCmd)
+void CDirectX::CreateWin32Window(LPCTSTR Title, WNDPROC WndProc, int nShowCmd)
 {
 	assert(!m_hWnd);
 
@@ -21,8 +21,8 @@ void CDirectX::CreateMainWindow(LPCTSTR Title, float Width, float Height, WNDPRO
 	RECT window_rect{};
 	window_rect.left = 0;
 	window_rect.top = 0;
-	window_rect.right = static_cast<LONG>(Width);
-	window_rect.bottom = static_cast<LONG>(Height);
+	window_rect.right = static_cast<LONG>(m_WindowWidth);
+	window_rect.bottom = static_cast<LONG>(m_WindowHeight);
 	AdjustWindowRect(&window_rect, WS_OVERLAPPEDWINDOW, FALSE);
 	
 	assert(m_hWnd = CreateWindowEx(0, window_class.lpszClassName, Title, WS_OVERLAPPEDWINDOW,

@@ -7,8 +7,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	constexpr float KWindowWidth{ 800.0f };
 	constexpr float KWindowHeight{ 600.0f };
 
-	CDirectX directx{ hInstance };
-	directx.CreateMainWindow(TEXT("Game"), KWindowWidth, KWindowHeight, WndProc, nShowCmd);
+	CDirectX directx{ hInstance, KWindowWidth, KWindowHeight };
+	directx.CreateWin32Window(TEXT("Game"), WndProc, nShowCmd);
 
 	while (true)
 	{

@@ -6,12 +6,15 @@
 class CDirectX
 {
 public:
-	CDirectX(HINSTANCE hInstance) : m_hInstance{ hInstance } {};
+	CDirectX(HINSTANCE hInstance, float WindowWidth, float WindowHeight) : 
+		m_hInstance{ hInstance }, m_WindowWidth{ WindowWidth }, m_WindowHeight{ WindowHeight }  {};
 	~CDirectX() {};
 
-	void CreateMainWindow(LPCTSTR Title, float Width, float Height, WNDPROC WndProc, int nShowCmd);
+	void CreateWin32Window(LPCTSTR Title, WNDPROC WndProc, int nShowCmd);
 
 private:
 	HWND		m_hWnd{};
 	HINSTANCE	m_hInstance{};
+	float		m_WindowWidth{};
+	float		m_WindowHeight{};
 };
