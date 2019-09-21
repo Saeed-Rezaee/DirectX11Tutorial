@@ -113,19 +113,6 @@ CShader* CDirectX::GetShader(size_t Index)
 	return m_vShaders[Index].get();
 }
 
-CObject2D* CDirectX::AddObject2D(const vector<SVertex2D>& vVertices, const vector<SIndex>& vIndices)
-{
-	m_vObject2Ds.emplace_back(make_unique<CObject2D>(m_Device.Get(), m_DeviceContext.Get()));
-	m_vObject2Ds.back()->Create(vVertices, vIndices);
-
-	return m_vObject2Ds.back().get();
-}
-
-CObject2D* CDirectX::GetObject2D(size_t Index)
-{
-	return m_vObject2Ds[Index].get();
-}
-
 void CDirectX::BeginRendering(const float(&ClearColorArray)[4])
 {
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView.Get(), ClearColorArray);

@@ -18,9 +18,6 @@ public:
 		const D3D11_INPUT_ELEMENT_DESC* VSInputElements = nullptr, UINT VSInputElementCount = 0);
 	CShader* GetShader(size_t Index);
 
-	CObject2D* AddObject2D(const vector<SVertex2D>& vVertices, const vector<SIndex>& vIndices);
-	CObject2D* GetObject2D(size_t Index);
-
 	void BeginRendering(const float (&ClearColorArray)[4]);
 	void EndRendering();
 
@@ -44,5 +41,4 @@ private:
 	ComPtr<ID3D11RenderTargetView>	m_RenderTargetView{};
 
 	vector<unique_ptr<CShader>>		m_vShaders{};
-	vector<unique_ptr<CObject2D>>	m_vObject2Ds{};
 };
