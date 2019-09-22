@@ -20,7 +20,6 @@ private:
 
 	ComPtr<ID3D11Resource>				m_Resource{};
 	ComPtr<ID3D11ShaderResourceView>	m_ShaderResourceView{};
-	ComPtr<ID3D11SamplerState>			m_SamplerState{};
 
 	XMFLOAT2							m_TextureSize{};
 };
