@@ -15,6 +15,8 @@ void CEntityPool::DrawEntities()
 {
 	for (auto& i : m_vEntities)
 	{
+		m_DirectX->UseSampler(i->Sampler);
+
 		i->m_MatrixWorld = XMMatrixTranspose(XMMatrixTranslation(i->WorldPosition.x, i->WorldPosition.y, 0.0f));
 
 		m_DirectX->m_CBWorld->Update(&i->m_MatrixWorld);

@@ -19,6 +19,7 @@ public:
 	void Draw();
 
 public:
+	ESampler				Sampler{ ESampler::Point };
 	XMFLOAT2				WorldPosition{};
 
 private:

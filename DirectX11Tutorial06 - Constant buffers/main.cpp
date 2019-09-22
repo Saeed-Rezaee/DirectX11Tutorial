@@ -26,6 +26,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	{
 		entity_test->AddTexture(KAssetDir + "test.png");
 		entity_test->CreateRectangle(entity_test->GetTexture(0)->GetTextureSize());
+		entity_test->Sampler = ESampler::Linear;
 	}
 
 	while (true)

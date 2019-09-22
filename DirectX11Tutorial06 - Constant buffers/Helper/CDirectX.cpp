@@ -47,6 +47,8 @@ void CDirectX::CreateDirect3DObjects()
 
 	CreateAndSetRenderTargetView();
 
+	CreateBaseSamplers();
+
 	CreateBaseConstantBuffers();
 
 	SetViewport();
@@ -88,6 +90,31 @@ void CDirectX::CreateAndSetRenderTargetView()
 	m_DeviceContext->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), nullptr);
 }
 
+void CDirectX::CreateBaseSamplers()
+{
+	assert(!m_SamplerPoint);
+	assert(!m_SamplerLinear);
+
+	D3D11_SAMPLER_DESC sampler_desc{};
+	sampler_desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+	sampler_desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampler_desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampler_desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampler_desc.MinLOD = 0.0f;
+	sampler_desc.MaxLOD = D3D11_FLOAT32_MAX;
+	sampler_desc.MipLODBias = 0.0f;
+	sampler_desc.MaxAnisotropy = 1;
+	sampler_desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	sampler_desc.BorderColor[0] = 1.0f;
+	sampler_desc.BorderColor[1] = 1.0f;
+	sampler_desc.BorderColor[2] = 1.0f;
+	sampler_desc.BorderColor[3] = 1.0f;
+	m_Device->CreateSamplerState(&sampler_desc, &m_SamplerPoint);
+
+	sampler_desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	m_Device->CreateSamplerState(&sampler_desc, &m_SamplerLinear);
+}
+
 void CDirectX::CreateBaseConstantBuffers()
 {
 	m_CBProjection = make_unique<CConstantBuffer>(m_Device.Get(), m_DeviceContext.Get());
@@ -123,6 +150,21 @@ CShader* CDirectX::AddShader(EShaderType ShaderType, LPCWSTR ShaderFileName, LPC
 CShader* CDirectX::GetShader(size_t Index)
 {
 	return m_vShaders[Index].get();
+}
+
+void CDirectX::UseSampler(ESampler Sampler)
+{
+	switch (Sampler)
+	{
+	case ESampler::Point:
+		m_DeviceContext->PSSetSamplers(0, 1, m_SamplerPoint.GetAddressOf());
+		break;
+	case ESampler::Linear:
+		m_DeviceContext->PSSetSamplers(0, 1, m_SamplerLinear.GetAddressOf());
+		break;
+	default:
+		break;
+	}
 }
 
 void CDirectX::BeginRendering(const float(&ClearColorArray)[4])
