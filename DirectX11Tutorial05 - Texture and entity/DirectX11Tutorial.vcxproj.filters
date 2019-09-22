@@ -56,9 +56,6 @@
     <ClInclude Include="Helper\CObject2D.h">
       <Filter>Helper</Filter>
     </ClInclude>
-    <ClInclude Include="Helper\CommonHeader.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
     <ClInclude Include="Helper\CShader.h">
       <Filter>Helper</Filter>
     </ClInclude>
@@ -132,6 +129,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Helper\CTexture.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\CommonHeader.h">
       <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>

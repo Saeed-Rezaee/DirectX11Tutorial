@@ -15,6 +15,8 @@ void CEntityPool::DrawEntities()
 {
 	for (auto& i : m_vEntities)
 	{
+		m_DirectX->UseSampler(i->Sampler);
+
 		i->Draw();
 	}
 }

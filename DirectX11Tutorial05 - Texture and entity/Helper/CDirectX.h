@@ -18,7 +18,9 @@ public:
 		const D3D11_INPUT_ELEMENT_DESC* VSInputElements = nullptr, UINT VSInputElementCount = 0);
 	CShader* GetShader(size_t Index);
 
-	void BeginRendering(const float (&ClearColorArray)[4]);
+	void UseSampler(ESampler Sampler);
+
+	void BeginRendering(const float(&ClearColorArray)[4]);
 	void EndRendering();
 
 private:
@@ -28,6 +30,7 @@ private:
 private:
 	void CreateDevice();
 	void CreateAndSetRenderTargetView();
+	void CreateBaseSamplers();
 	void SetViewport();
 
 private:
@@ -41,4 +44,7 @@ private:
 	ComPtr<ID3D11RenderTargetView>	m_RenderTargetView{};
 
 	vector<unique_ptr<CShader>>		m_vShaders{};
+
+	ComPtr<ID3D11SamplerState>		m_SamplerPoint{};
+	ComPtr<ID3D11SamplerState>		m_SamplerLinear{};
 };

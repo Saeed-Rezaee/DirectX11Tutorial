@@ -21,3 +21,9 @@ using std::unique_ptr;
 using std::make_unique;
 using std::string;
 using std::wstring;
+
+enum class ESampler
+{
+	Point,
+	Linear
+};
