@@ -98,8 +98,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			time_now_microsec = time_now / 1'000;
 
 			bool pressed_left{}, pressed_right{}, pressed_up{}, pressed_down{};
-			if (GetKeyState(VK_RIGHT) < 0) pressed_left = true;
-			if (GetKeyState(VK_LEFT) < 0) pressed_right = true;
+			if (GetKeyState(VK_RIGHT) < 0) pressed_right = true;
+			if (GetKeyState(VK_LEFT) < 0) pressed_left = true;
 			if (GetKeyState(VK_UP) < 0) pressed_up = true;
 			if (GetKeyState(VK_DOWN) < 0) pressed_down = true;
 
@@ -107,15 +107,15 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			{
 				if (pressed_left)
 				{
-					entity_sprite->WorldPosition.x += 1.0f;
-					entity_sprite->SetAnimation("Walk");
-					entity_sprite->SetAnimationFlipping(ERenderFlipOption::Horizontal);
-				}
-				if (pressed_right)
-				{
 					entity_sprite->WorldPosition.x -= 1.0f;
 					entity_sprite->SetAnimation("Walk");
 					entity_sprite->SetAnimationFlipping(ERenderFlipOption::None);
+				}
+				if (pressed_right)
+				{
+					entity_sprite->WorldPosition.x += 1.0f;
+					entity_sprite->SetAnimation("Walk");
+					entity_sprite->SetAnimationFlipping(ERenderFlipOption::Horizontal);
 				}
 				if (pressed_up) entity_sprite->WorldPosition.y += 1.0f;
 				if (pressed_down) entity_sprite->WorldPosition.y -= 1.0f;
